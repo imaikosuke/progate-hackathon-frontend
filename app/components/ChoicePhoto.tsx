@@ -13,7 +13,7 @@ const ChoicePhoto: React.FC<ChoicePhotoProps> = ({ item }) => {
 
     const handleClick = () => {
       console.log(item.id + "要素がクリックされました");
-      const endpoint = process.env.NEXT_PUBLIC_API_ENDPOINT;
+      const endpoint = process.env.API_ENDPOINT;
       fetch(`${endpoint}/photo_choice/${item.id}`, {
         method: "POST",
         headers: {
