@@ -25,10 +25,14 @@ const Contaienr = () => {
     // ここに候補の観光地のIDを入れる
     container1: [],
     container2: ["1", "2", "3", "4", "5"],
+    container3: [],
   });
 
   //リストのリソースid（リストの値）
   const [activeId, setActiveId] = useState<UniqueIdentifier>();
+
+  // コンテナ1の個数
+  const [container1Count, setContainer1Count] = useState(0);
 
   // ドラッグの開始、移動、終了などにどのような入力を許可するかを決めるprops
   const sensors = useSensors(
@@ -90,7 +94,10 @@ const Contaienr = () => {
       const overIndex = overItems.indexOf(overId.toString());
 
       // コンテナ1のアイテム数が10未満の場合のみ移動を許可する処理をここに
-
+      if (overContainer === "container1" && overItems.length >= 10) {
+        // コンテナ1のアイテム数が10以上の場合は何もしない
+        return prev;
+      }
       let newIndex;
       if (overId in prev) {
         // We're at the root droppable of a container
@@ -102,8 +109,7 @@ const Contaienr = () => {
 
         newIndex = overIndex >= 0 ? overIndex + modifier : overItems.length + 1;
       }
-
-      return {
+      const newState = {
         ...prev,
         [activeContainer]: [
           ...prev[activeContainer].filter((item) => item !== active.id),
@@ -114,6 +120,13 @@ const Contaienr = () => {
           ...prev[overContainer].slice(newIndex, prev[overContainer].length),
         ],
       };
+
+      // コンテナ1の個数を更新
+      if (overContainer === "container1" || activeContainer === "container1") {
+        setContainer1Count(newState.container1.length);
+      }
+
+      return newState;
     });
   };
 
@@ -162,29 +175,37 @@ const Contaienr = () => {
     console.log("Items after drop", items["container2"]);
   }, [items]);
   return (
-    <div className="flex flex-row mx-auto my-16">
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCorners}
-        onDragStart={handleDragStart}
-        onDragOver={handleDragOver}
-        onDragEnd={handleDragEnd}
-      >
-        {/* SortableContainer */}
-        <SortableContainer
-          id="container1"
-          items={items.container1}
-          label="ランキング"
-        />
-        <SortableContainer
-          id="container2"
-          label="候補"
-          items={items.container2}
-        />
+    <div className="mx-16">
+      <div className="flex flex-row mx-auto my-16">
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCorners}
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDragEnd={handleDragEnd}
+        >
+          {/* SortableContainer */}
+          <SortableContainer
+            id="container1"
+            items={items.container1}
+            label="ランキング"
+          />
+          <SortableContainer
+            id="container2"
+            label="候補"
+            items={items.container2}
+          />
+          <SortableContainer
+            id="container3"
+            items={items.container3}
+            label="いらない"
+          />
 
-        {/* DragOverlay */}
-        <DragOverlay>{activeId ? <Item id={activeId} /> : null}</DragOverlay>
-      </DndContext>
+          {/* DragOverlay */}
+          <DragOverlay>{activeId ? <Item id={activeId} /> : null}</DragOverlay>
+        </DndContext>
+      </div>
+      <p className="text-3xl">個数:{container1Count}</p>
     </div>
   );
 };
