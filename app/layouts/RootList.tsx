@@ -1,10 +1,11 @@
 import RootListItems from "../components/RootListItems";
 
 const data = [
-  { number: 1, address: "東京都板橋区hoge" },
-  { number: 2, address: "東京都渋谷区hoge" },
-  { number: 3, address: "東京都新宿区hoge" },
-  { number: 4, address: "東京都中野区hoge" },
+  { number: 1, address: "東京スカイツリー" },
+  { number: 2, address: "すみだ水族館" },
+  { number: 3, address: "雷門" },
+  { number: 4, address: "浅草文化観光センター" },
+  { number: 5, address: "江戸東京博物館" },
 ];
 
 const RootList = () => {
