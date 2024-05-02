@@ -29,7 +29,7 @@ const MapRoot = () => {
           <RootList onSelectLocation={handleSelectLocation}/>
         </div>
         <div className='w-3/5 p-4'>
-          <GoogleMaps locations={googleMapDemoData} center={selectedLocation}/>
+          <GoogleMaps locations={googleMapDemoData} selectedLocation={selectedLocation}/>
         </div>
       </main>
       <Footer />
