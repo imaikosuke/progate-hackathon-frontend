@@ -18,13 +18,9 @@ import SortableContainer from "./SortableContainer";
 import Item from "./Item";
 
 const Contaienr = ({ data }: { data: any }) => {
-  console.log(data);
-  console.log(typeof data); // data の型を出力
-  console.log(Array.isArray(data));
   const dataArray = JSON.parse(data);
 
   const stringArray = dataArray.map((number: number) => String(number));
-  console.log(stringArray);
   // ドラッグ&ドロップでソート可能なリスト
   const [items, setItems] = useState<{
     [key: string]: string[];
