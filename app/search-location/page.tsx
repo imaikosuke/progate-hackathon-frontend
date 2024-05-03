@@ -20,6 +20,7 @@ const SearchLocation = () => {
   const autocompleteInput = useRef<HTMLInputElement>(null);
   const [loaded, setLoaded] = useState(false);
 
+  // Google Maps APIのロードを終えてから実行
   useEffect(() => {
     if (loaded && autocompleteInput.current) {
       const newAutocomplete = new google.maps.places.Autocomplete(autocompleteInput.current, {
