@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Suspense } from "react";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: '旅ルート',
-  description: 'Progate Hackathon #1',
+  title: "旅ルート",
+  description: "Progate Hackathon #1",
 };
 
 export default function RootLayout({
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <Suspense fallback={<div>Loading...</div>}>
+        <body className={inter.className}>{children}</body>
+      </Suspense>
     </html>
   );
 }

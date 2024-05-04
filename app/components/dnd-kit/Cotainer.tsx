@@ -17,14 +17,17 @@ import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import SortableContainer from "./SortableContainer";
 import Item from "./Item";
 
-const Contaienr = () => {
+const Contaienr = ({ data }: { data: any }) => {
+  const dataArray = JSON.parse(data);
+
+  const stringArray = dataArray.map((number: number) => String(number));
   // ドラッグ&ドロップでソート可能なリスト
   const [items, setItems] = useState<{
     [key: string]: string[];
   }>({
     // ここに候補の観光地のIDを入れる
     container1: [],
-    container2: ["1", "2", "3", "4", "5"],
+    container2: stringArray,
     container3: [],
   });
 

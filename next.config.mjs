@@ -20,7 +20,11 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ['placehold.jp'],
+    domains: [
+      "placehold.jp",
+      "pub-cbf08acd7c1b4f9d88dfeaf6e6f97284.r2.dev",
+      "lh5.googleusercontent.com",
+    ],
   },
 };
 export default nextConfig;
