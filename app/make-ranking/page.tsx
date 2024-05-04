@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Contaienr from "../components/dnd-kit/Cotainer";
 import axios from "axios";
+import { Suspense } from "react";
 
 const getID = async (lon: string, lat: string) => {
   try {
@@ -35,7 +36,11 @@ const Page = () => {
     fetchData();
   }, [lon, lat]);
 
-  return <div>{data && <Contaienr data={data} />}</div>;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <div>{data && <Contaienr data={data} />}</div>;
+    </Suspense>
+  );
 };
 
 export default Page;
