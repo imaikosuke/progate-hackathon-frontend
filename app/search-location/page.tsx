@@ -1,6 +1,7 @@
 // progate-hackathon-frontend/app/search-location/page.tsx
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -45,9 +46,18 @@ const SearchLocation = () => {
     }
   };
 
-  const handleConfirmClick = () => {
+  const handleConfirmClick = async () => {
     if (location) {
       console.log('選択された場所:', location);
+      try {
+        // バックエンドに選択された場所の緯度経度を送信
+        await axios.post('http://localhost:8000/main_place', {
+          longitude: location.lng,
+          latitude: location.lat,
+        });
+      } catch (error) {
+        console.error('Error sending location data to backend:', error);
+      }
     }
   };
 

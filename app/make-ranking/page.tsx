@@ -1,3 +1,4 @@
+// progate-hackathon-frontend/app/make-ranking/page.tsx
 import React from "react";
 import Contaienr from "../components/dnd-kit/Cotainer";
 
