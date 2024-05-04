@@ -38,12 +38,7 @@ const Contaienr = ({ data }: { data: any }) => {
   const [container1Count, setContainer1Count] = useState(0);
 
   // ドラッグの開始、移動、終了などにどのような入力を許可するかを決めるprops
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
+  const sensors = useSensors(useSensor(PointerSensor));
 
   //各コンテナ取得関数
   const findContainer = (id: UniqueIdentifier) => {
@@ -60,6 +55,8 @@ const Contaienr = ({ data }: { data: any }) => {
     const { active } = event;
     //ドラッグしたリソースのid
     const id = active.id.toString();
+    const startcontainer = findContainer(id);
+    console.log("start", startcontainer);
     setActiveId(id);
   };
 
@@ -71,12 +68,17 @@ const Contaienr = ({ data }: { data: any }) => {
     //ドロップした場所にあったリソースのid
     const overId = over?.id;
 
+    console.log("drag中", activeId);
+    console.log("dragover", overId);
+
     if (!overId) return;
 
     // ドラッグ、ドロップ時のコンテナ取得
     // container1,container2,container3,container4のいずれかを持つ
     const activeContainer = findContainer(id);
     const overContainer = findContainer(over?.id);
+    console.log("overContainer", overContainer);
+    console.log("activeContainer", activeContainer);
 
     if (
       !activeContainer ||
@@ -86,11 +88,13 @@ const Contaienr = ({ data }: { data: any }) => {
       return;
     }
 
+    // コンテナ間の移動処理
     setItems((prev) => {
       // 移動元のコンテナの要素配列を取得
       const activeItems = prev[activeContainer];
       // 移動先のコンテナの要素配列を取得
       const overItems = prev[overContainer];
+      console.log("overItems", overItems);
 
       // 配列のインデックス取得
       const activeIndex = activeItems.indexOf(id);
@@ -101,6 +105,7 @@ const Contaienr = ({ data }: { data: any }) => {
         // コンテナ1のアイテム数が10以上の場合は何もしない
         return prev;
       }
+
       let newIndex;
       if (overId in prev) {
         // We're at the root droppable of a container
@@ -156,9 +161,14 @@ const Contaienr = ({ data }: { data: any }) => {
       return;
     }
 
+    console.log("end", activeContainer, overContainer);
+
     // 配列のインデックス取得
     const activeIndex = items[activeContainer].indexOf(id);
     const overIndex = items[overContainer].indexOf(overId.toString());
+
+    console.log("activeIndex", activeIndex);
+    console.log("overIndex", overIndex);
 
     if (activeIndex !== overIndex) {
       setItems((items) => ({
@@ -178,8 +188,8 @@ const Contaienr = ({ data }: { data: any }) => {
     console.log("Items after drop", items["container2"]);
   }, [items]);
   return (
-    <div className="mx-16">
-      <div className="flex flex-row mx-auto my-16">
+    <>
+      <div className="mx-16">
         <DndContext
           sensors={sensors}
           collisionDetection={closestCorners}
@@ -187,6 +197,7 @@ const Contaienr = ({ data }: { data: any }) => {
           onDragOver={handleDragOver}
           onDragEnd={handleDragEnd}
         >
+          <div className="flex flex-row mx-auto my-16 gap-8"></div>
           {/* SortableContainer */}
           <SortableContainer
             id="container1"
@@ -205,11 +216,11 @@ const Contaienr = ({ data }: { data: any }) => {
           />
 
           {/* DragOverlay */}
-          <DragOverlay>{activeId ? <Item id={activeId} /> : null}</DragOverlay>
+          {/* <DragOverlay>{activeId ? <Item id={activeId} /> : null}</DragOverlay> */}
         </DndContext>
       </div>
       <p className="text-3xl">個数:{container1Count}</p>
-    </div>
+    </>
   );
 };
 
