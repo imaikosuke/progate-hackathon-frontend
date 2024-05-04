@@ -14,6 +14,9 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@googlemaps/react-wrapper": "^1.1.35",
     "@react-google-maps/api": "^2.19.3",
+    "@supabase/ssr": "^0.3.0",
+    "@supabase/supabase-js": "^2.43.1",
+    "axios": "^1.6.8",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18"
