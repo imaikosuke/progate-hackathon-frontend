@@ -34,12 +34,12 @@ const Item = ({ id }: { id: UniqueIdentifier }) => {
   }, [id]);
 
   return (
-    <div className="max-w-96 h-[50px] flex items-center justify-center my-2.5 border border-black rounded-lg mx-auto">
+    <div className=" flex items-center justify-center my-2.5 rounded-lg">
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
       <Image
         src={imageUrl ? imageUrl : ""} // Await the fetchData() function call
-        width={30}
-        height={30}
+        width={180}
+        height={180}
         alt={""}
         className="max-w-full"
       />

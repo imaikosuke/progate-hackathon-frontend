@@ -189,7 +189,7 @@ const Contaienr = ({ data }: { data: any }) => {
   }, [items]);
   return (
     <>
-      <div className="mx-16">
+      <div className="mx-16 mt-8">
         <DndContext
           sensors={sensors}
           collisionDetection={closestCorners}
@@ -197,29 +197,29 @@ const Contaienr = ({ data }: { data: any }) => {
           onDragOver={handleDragOver}
           onDragEnd={handleDragEnd}
         >
-          <div className="flex flex-row mx-auto my-16 gap-8"></div>
           {/* SortableContainer */}
+          {/* <p className="text-3xl">個数:{container1Count}</p> */}
           <SortableContainer
             id="container1"
             items={items.container1}
             label="ランキング"
           />
+
           <SortableContainer
             id="container2"
-            label="候補"
+            label=""
             items={items.container2}
           />
-          <SortableContainer
+          {/* <SortableContainer
             id="container3"
             items={items.container3}
             label="いらない"
-          />
+          /> */}
 
           {/* DragOverlay */}
           {/* <DragOverlay>{activeId ? <Item id={activeId} /> : null}</DragOverlay> */}
         </DndContext>
       </div>
-      <p className="text-3xl">個数:{container1Count}</p>
     </>
   );
 };
