@@ -17,7 +17,7 @@ import { useSearchParams } from "next/navigation";
 
 const MapRoot = () => {
   const searchParams = useSearchParams();
-  const responseParam = searchParams.get("response");
+  const responseParam = searchParams.get("items");
   const route_data = responseParam ? JSON.parse(responseParam) : [];
 
   const [selectedLocation, setSelectedLocation] = useState<{
@@ -25,7 +25,7 @@ const MapRoot = () => {
     lng: number;
   }>();
 
-  const googleMapDemoData = route_data.root.map(
+  const googleMapDemoData = route_data.map(
     (item: { lat: number; lng: number }) => ({
       lat: item.lat,
       lng: item.lng,
