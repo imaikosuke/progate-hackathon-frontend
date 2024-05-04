@@ -1,12 +1,7 @@
 // progate-hackathon-frontend/app/layouts/GoogleMap.tsx
-"use client";
-import React, { useEffect, useState } from "react";
-import {
-  GoogleMap,
-  DirectionsRenderer,
-  Marker,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+'use client';
+import React, { useEffect, useState } from 'react';
+import { GoogleMap, DirectionsRenderer, Marker, useJsApiLoader } from '@react-google-maps/api';
 
 interface Location {
   lat: number;
@@ -20,22 +15,18 @@ interface GoogleMapsProps {
 
 // Google Mapのサイズ
 const containerStyle = {
-  width: "100%",
-  height: "100%",
+  width: '100%',
+  height: '100%',
 };
 
-const GoogleMaps: React.FC<GoogleMapsProps> = ({
-  locations,
-  selectedLocation,
-}) => {
+const GoogleMaps: React.FC<GoogleMapsProps> = ({ locations, selectedLocation }) => {
   const defaultCenter = { lat: 35.709, lng: 139.732 };
-  const [directions, setDirections] =
-    useState<google.maps.DirectionsResult | null>(null);
+  const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
-    language: "ja",
-    region: "JP",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+    language: 'ja',
+    region: 'JP',
   });
 
   useEffect(() => {
@@ -52,7 +43,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({
         if (status === google.maps.DirectionsStatus.OK) {
           setDirections(result);
         } else {
-          setError("Failed to fetch directions");
+          setError('Failed to fetch directions');
         }
       }
     );
@@ -61,17 +52,13 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({
   return (
     <div className="h-full w-full">
       {isLoaded ? (
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={defaultCenter}
-          zoom={10}
-        >
+        <GoogleMap mapContainerStyle={containerStyle} center={defaultCenter} zoom={10}>
           {directions && <DirectionsRenderer directions={directions} />}
           {selectedLocation && (
             <Marker
               position={selectedLocation}
               icon={{
-                url: "/map_pin.gif",
+                url: '/map_pin.gif',
                 scaledSize: new google.maps.Size(64, 64),
               }}
             />
