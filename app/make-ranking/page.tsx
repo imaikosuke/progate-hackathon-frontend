@@ -2,25 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Contaienr from "../components/dnd-kit/Cotainer";
-import axios from "axios";
-import { Suspense } from "react";
-
-const getID = async (lon: string, lat: string) => {
-  try {
-    const apiUrl = process.env.BACKEND_URL;
-    const response = await axios.post(apiUrl + "/get_narrow", {
-      data: {
-        longitude: lon,
-        latitude: lat,
-      },
-    });
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
+import { getID } from "../../utils/API/getData";
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -36,11 +18,7 @@ const Page = () => {
     fetchData();
   }, [lon, lat]);
 
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div>{data && <Contaienr data={data} />}</div>;
-    </Suspense>
-  );
+  return <div>{data && <Contaienr data={data} />}</div>;
 };
 
 export default Page;
