@@ -26,9 +26,9 @@ const MapRoot = () => {
   }>();
 
   const googleMapDemoData = route_data.map(
-    (item: { lat: number; lng: number }) => ({
-      lat: item.lat,
-      lng: item.lng,
+    (item: { latitude: number; longitude: number }) => ({
+      lat: item.latitude,
+      lng: item.longitude,
     })
   );
 
