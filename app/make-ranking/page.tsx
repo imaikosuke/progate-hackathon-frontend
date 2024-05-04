@@ -6,7 +6,8 @@ import axios from "axios";
 
 const getID = async (lon: string, lat: string) => {
   try {
-    const response = await axios.post("http://localhost:8000/get_narrow", {
+    const apiUrl = process.env.BACKEND_URL;
+    const response = await axios.post(apiUrl + "/get_narrow", {
       data: {
         longitude: lon,
         latitude: lat,
