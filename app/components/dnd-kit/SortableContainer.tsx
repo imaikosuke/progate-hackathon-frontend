@@ -25,7 +25,7 @@ const SortableContainer = ({
   const handleButtonClick = useCallback(async () => {
     if (id === "container1" && items.length === 10) {
       try {
-        const apiUrl = process.env.BACKEND_URL;
+        const apiUrl = process.env.NEXT_PABLIC_BACKEND_URL;
         const response = await fetch(apiUrl + "/make_root", {
           method: "POST",
           headers: {
