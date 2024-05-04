@@ -2,6 +2,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { useRouter } from 'next/navigation';
 
 const containerStyle = {
   width: '100%',
@@ -14,13 +15,14 @@ if (!googleMapsApiKey) {
 }
 
 const SearchLocation = () => {
+  const router = useRouter();
+  const [redirectUrl, setRedirectUrl] = useState('');
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [center, setCenter] = useState<{ lat: number; lng: number }>({ lat: 38.0, lng: 137.0 });
   const [zoom, setZoom] = useState(5);
   const autocompleteInput = useRef<HTMLInputElement>(null);
   const [loaded, setLoaded] = useState(false);
 
-  // Google Maps APIのロードを終えてから実行
   useEffect(() => {
     if (loaded && autocompleteInput.current) {
       const newAutocomplete = new google.maps.places.Autocomplete(autocompleteInput.current, {
@@ -45,11 +47,18 @@ const SearchLocation = () => {
     }
   };
 
-  const handleConfirmClick = () => {
+  const handleConfirmClick = async () => {
     if (location) {
       console.log('選択された場所:', location);
+      setRedirectUrl(`/make-ranking?lon=${location.lng}&lat=${location.lat}`);
     }
   };
+
+  useEffect(() => {
+    if (redirectUrl) {
+      router.push(redirectUrl);
+    }
+  }, [redirectUrl, router]);
 
   return (
     <div className="flex flex-col items-center justify-center p-4">
