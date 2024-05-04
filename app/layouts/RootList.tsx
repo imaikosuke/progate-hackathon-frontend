@@ -17,7 +17,7 @@ import RootListItems from "../components/RootListItems";
 
 interface RootListProps {
   onSelectLocation: (location: { lat: number; lng: number }) => void;
-  routeData: { number: number; address: string; lat: number; lng: number }[];
+  routeData: { order: number; id: number; lat: number; lng: number }[];
 }
 
 const RootList: React.FC<RootListProps> = ({ onSelectLocation, routeData }) => {
