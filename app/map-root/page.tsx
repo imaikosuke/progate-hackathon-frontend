@@ -14,9 +14,9 @@ const MapRoot = () => {
   const route_data = responseParam ? JSON.parse(responseParam) : [];
   const [selectedLocation, setSelectedLocation] = useState<{ lat: number; lng: number }>();
   const [mapImage, setMapImage] = useState<string>();
-  const googleMapDemoData = route_data.map((item: { lat: number; lng: number }) => ({
-    lat: item.lat,
-    lng: item.lng,
+  const googleMapDemoData = route_data.map((item: { latitude: number; longitude: number }) => ({
+    lat: item.latitude,
+    lng: item.longitude,
   }));
 
   const handleSelectLocation = (location: { lat: number; lng: number }) => {
