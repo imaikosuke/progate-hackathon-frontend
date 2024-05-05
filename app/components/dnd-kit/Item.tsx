@@ -34,7 +34,7 @@ const Item = ({ id }: { id: UniqueIdentifier }) => {
   }, [id]);
 
   return (
-    <div className=" flex items-center justify-center my-2.5 rounded-lg">
+    <>
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
       <Card maxW="md">
         <CardBody justifyContent="center">
@@ -47,7 +47,7 @@ const Item = ({ id }: { id: UniqueIdentifier }) => {
           />
         </CardBody>
       </Card>
-    </div>
+    </>
   );
 };
 export default Item;
