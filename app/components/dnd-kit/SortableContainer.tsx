@@ -137,7 +137,7 @@ const SortableContainer = ({
             className={`grid ${
               id === "container1"
                 ? "grid-cols-8 h-80 pt-36 "
-                : "grid grid-rows-2 grid-flow-col overflow-x-auto gap-4 p-4"
+                : "grid grid-rows-4 grid-flow-col overflow-x-auto gap-4 p-4"
             } gap-2 pb-16`}
             style={{ minHeight: "32px" }}
           >

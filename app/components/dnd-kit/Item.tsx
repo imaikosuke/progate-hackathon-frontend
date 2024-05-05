@@ -34,20 +34,17 @@ const Item = ({ id }: { id: UniqueIdentifier }) => {
   }, [id]);
 
   return (
-    <div className=" flex items-center justify-center my-2.5 rounded-lg">
+    <>
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
-      <Card maxW="md">
-        <CardBody justifyContent="center">
-          <Image
-            src={imageUrl ? imageUrl : ""} // Await the fetchData() function call
-            width={180}
-            height={180}
-            alt={""}
-            className="w-full h-full object-cover bg-gray-400"
-          />
-        </CardBody>
-      </Card>
-    </div>
+
+      <Image
+        src={imageUrl ? imageUrl : ""} // Await the fetchData() function call
+        width={180}
+        height={180}
+        alt={""}
+        className="w-full h-full object-cover bg-gray-400"
+      />
+    </>
   );
 };
 export default Item;
