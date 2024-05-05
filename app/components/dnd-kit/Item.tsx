@@ -3,7 +3,7 @@ import { UniqueIdentifier } from "@dnd-kit/core";
 import Image from "next/image";
 import { supabase } from "@/utils/supabase/server";
 import { useEffect, useState } from "react";
-
+import { Card, CardHeader, CardBody, CardFooter } from "@yamada-ui/react";
 export const getData = async (id: UniqueIdentifier) => {
   try {
     const response = await supabase
@@ -34,15 +34,19 @@ const Item = ({ id }: { id: UniqueIdentifier }) => {
   }, [id]);
 
   return (
-    <div className="max-w-96 h-[50px] flex items-center justify-center my-2.5 border border-black rounded-lg mx-auto">
+    <div className=" flex items-center justify-center my-2.5 rounded-lg">
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
-      <Image
-        src={imageUrl ? imageUrl : ""} // Await the fetchData() function call
-        width={30}
-        height={30}
-        alt={""}
-        className="max-w-full"
-      />
+      <Card maxW="md">
+        <CardHeader justifyContent="center">
+          <Image
+            src={imageUrl ? imageUrl : ""} // Await the fetchData() function call
+            width={180}
+            height={180}
+            alt={""}
+            className="max-w-full"
+          />
+        </CardHeader>
+      </Card>
     </div>
   );
 };
