@@ -13,7 +13,7 @@ const SortableItem = ({ id }: { id: UniqueIdentifier }) => {
       style={{ transform: CSS.Transform.toString(transform), transition }}
       {...attributes}
       {...listeners}
-      className="text-center border-2 border-gray-500/75 rounded-lg p-4 cursor-move hover:bg-gray-200 transition-colors"
+      className="text-center rounded-lg p-2 cursor-move hover:bg-gray-200 transition-colors bg-black-100"
     >
       <Item id={id} />
     </div>
