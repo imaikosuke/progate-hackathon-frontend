@@ -4,7 +4,7 @@ import RootListItem from "./RootListItem";
 import Image from "next/image";
 
 interface RootListItemsProps {
-  items: Array<{ order: number; id: number; lat: number; lng: number }>;
+  items: Array<{ order: number; id: number; lat: number; lng: number; place_name: string; }>;
   onSelectLocation: (location: { lat: number; lng: number }) => void;
 }
 
@@ -22,10 +22,11 @@ const RootListItems: React.FC<RootListItemsProps> = ({
             id={item.id}
             lat={item.lat}
             lng={item.lng}
+            place_name={item.place_name}
             onSelectLocation={onSelectLocation}
           />
           {index !== items.length - 1 && (
-            <div className="p-8">
+            <div className="p-3">
               <Image
                 src="/south.png"
                 alt="Example Image"

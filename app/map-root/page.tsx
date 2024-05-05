@@ -18,12 +18,10 @@ const MapRoot = () => {
   }>();
 
   const [mapImage, setMapImage] = useState<string>();
-  const googleMapDemoData = route_data.map(
-    (item: { latitude: number; longitude: number }) => ({
-      lat: item.latitude,
-      lng: item.longitude,
-    })
-  );
+  const googleMapDemoData = route_data.map((item: { latitude: number; longitude: number }) => ({
+    lat: item.latitude,
+    lng: item.longitude,
+  }));
 
   const handleSelectLocation = (location: { lat: number; lng: number }) => {
     setSelectedLocation(location);
