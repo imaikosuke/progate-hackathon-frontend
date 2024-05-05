@@ -11,7 +11,7 @@ const SelectOption = () => {
   const lat = searchParams.get("lat") as string;
   const name = searchParams.get("name") as string;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     window.location.href = `/make-ranking?time=${time}&transportation=${transportation}&mainPlaceTime=${mainPlaceTime}&lon=${lon}&lat=${lat}&name=${name}`;

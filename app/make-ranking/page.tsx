@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Contaienr from "../components/dnd-kit/Cotainer";
 import { getID } from "../../utils/API/getData";
+import { UIProvider } from "@yamada-ui/react";
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -29,7 +30,11 @@ const Page = () => {
     fetchData();
   }, [lon, lat]);
 
-  return <div>{data && <Contaienr data={data} />}</div>;
+  return (
+    <UIProvider>
+      <div>{data && <Contaienr data={data} />}</div>
+    </UIProvider>
+  );
 };
 
 export default Page;

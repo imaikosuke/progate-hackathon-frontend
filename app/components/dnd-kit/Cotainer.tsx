@@ -101,7 +101,7 @@ const Contaienr = ({ data }: { data: any }) => {
       const overIndex = overItems.indexOf(overId.toString());
 
       // コンテナ1のアイテム数が10未満の場合のみ移動を許可する処理をここに
-      if (overContainer === "container1" && overItems.length >= 10) {
+      if (overContainer === "container1" && overItems.length >= 8) {
         // コンテナ1のアイテム数が10以上の場合は何もしない
         return prev;
       }

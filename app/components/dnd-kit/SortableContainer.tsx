@@ -32,7 +32,7 @@ const SortableContainer = ({
 
   // ボタンがクリックされたときにコンソールにコンテナ1のアイテムを出力する
   const handleButtonClick = useCallback(async () => {
-    if (id === "container1" && items.length === 10) {
+    if (id === "container1" && items.length === 8) {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
         const response = await fetch(apiUrl + "/make_root", {
@@ -124,7 +124,7 @@ const SortableContainer = ({
             className={`grid ${
               id === "container1"
                 ? "grid-cols-8 h-80 pt-36 "
-                : "grid-cols-6 min-h-full p-4"
+                : "grid-rows-3 min-h-full p-4"
             } gap-2 pb-16`}
             style={{ minHeight: "32px" }}
           >
@@ -143,7 +143,7 @@ const SortableContainer = ({
               ? "bg-blue-500 hover:bg-blue-700 text-white"
               : "bg-gray-300 cursor-not-allowed text-gray-600"
           } text-2xl py-2 px-4 rounded`}
-          disabled={id !== "container1" || items.length !== 10}
+          disabled={id !== "container1" || items.length !== 8}
         >
           決定
         </button>
