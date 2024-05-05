@@ -37,15 +37,15 @@ const Item = ({ id }: { id: UniqueIdentifier }) => {
     <div className=" flex items-center justify-center my-2.5 rounded-lg">
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
       <Card maxW="md">
-        <CardHeader justifyContent="center">
+        <CardBody justifyContent="center">
           <Image
             src={imageUrl ? imageUrl : ""} // Await the fetchData() function call
             width={180}
             height={180}
             alt={""}
-            className="max-w-full"
+            className="w-full h-full object-cover bg-gray-400"
           />
-        </CardHeader>
+        </CardBody>
       </Card>
     </div>
   );
