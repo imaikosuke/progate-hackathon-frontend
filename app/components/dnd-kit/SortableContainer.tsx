@@ -99,12 +99,25 @@ const SortableContainer = ({
   return (
     <div className={containerClassName}>
       <h3 className="text-3xl font-bold text-center mb-4">{label}</h3>
+      {id === "container1" && (
+        <button
+          onClick={handleButtonClick}
+          className={`mt-4 mx-auto block ${
+            id === "container1" && items.length === 8
+              ? "bg-blue-500 hover:bg-blue-700 text-white"
+              : "bg-gray-300 cursor-not-allowed text-gray-600"
+          } text-2xl py-2 px-4 rounded`}
+          disabled={id !== "container1" || items.length !== 8}
+        >
+          決定
+        </button>
+      )}
 
       <SortableContext id={id} items={items} strategy={rectSortingStrategy}>
         <div
           className={`grid ${
             id === "container1" ? "bg-blue-300" : "bg-grey-200"
-          } w-full border-2 border-gray-500/75 px-4 my-16 rounded-md  text-center relative`}
+          } w-full border-2 border-gray-500/75 px-4 my-4 rounded-md  text-center relative`}
         >
           {id === "container1" && (
             <div className="text-2xl grid grid-cols-8 text-center absolute top-12 w-[calc(100%-1rem)] pl-4">
@@ -122,9 +135,7 @@ const SortableContainer = ({
           <div
             ref={setNodeRef}
             className={`grid ${
-              id === "container1"
-                ? "grid-cols-8 h-80 pt-36 "
-                : "grid-rows-3 min-h-full p-4"
+              id === "container1" ? "grid-cols-8 h-80 pt-36 " : "grid-cols-4"
             } gap-2 pb-16`}
             style={{ minHeight: "32px" }}
           >
@@ -135,19 +146,6 @@ const SortableContainer = ({
         </div>
       </SortableContext>
       {/* ボタンを追加 */}
-      {id === "container1" && (
-        <button
-          onClick={handleButtonClick}
-          className={`mt-4 mx-auto block ${
-            id === "container1" && items.length === 8
-              ? "bg-blue-500 hover:bg-blue-700 text-white"
-              : "bg-gray-300 cursor-not-allowed text-gray-600"
-          } text-2xl py-2 px-4 rounded`}
-          disabled={id !== "container1" || items.length !== 8}
-        >
-          決定
-        </button>
-      )}
     </div>
   );
 };
